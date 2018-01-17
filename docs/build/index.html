@@ -310,7 +310,7 @@
 <blockquote>
 <p>Install the Twirp compiler plugin <code>protoc-gen-twirp</code>:</p>
 </blockquote>
-<pre class="highlight shell"><code><span class="gp">$ </span>go get -u code.justin.tv/common/twirp/protoc-gen-twirp
+<pre class="highlight shell"><code><span class="gp">$ </span>go get -u github.com/twitchtv/twirp/protoc-gen-twirp
 </code></pre>
 <p>Installing <code>protoc-gen-twirp</code> will add the executable to your <code>$GOBIN</code> as well. When <code>protoc</code> is run, it will look for plugins such as <code>protoc-gen-twirp</code> and <code>protoc-gen-go</code> in your <code>$PATH</code>.</p>
 <h1 id='getting-started'>Getting Started</h1>
@@ -326,7 +326,7 @@ particular size.</p>
 </span>
 <span class="na">syntax</span> <span class="o">=</span> <span class="s">"proto3"</span><span class="p">;</span>
 
-<span class="kn">package</span> <span class="nn">code</span><span class="o">.</span><span class="n">justin.tv.example.haberdasher</span><span class="p">;</span>
+<span class="kn">package</span> <span class="nn">twirp</span><span class="o">.</span><span class="n">example.haberdasher</span><span class="p">;</span>
 <span class="k">option</span> <span class="na">go_package</span> <span class="o">=</span> <span class="s">"haberdasher"</span><span class="p">;</span>
 
 <span class="c1">// Haberdasher service makes hats for clients.
@@ -374,7 +374,7 @@ documentation of your API.</p>
     </span><span class="n">MakeHat</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="o">*</span><span class="n">Size</span><span class="p">)</span><span class="x"> </span><span class="p">(</span><span class="o">*</span><span class="n">Hat</span><span class="p">,</span><span class="x"> </span><span class="kt">error</span><span class="p">)</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
-<p>Inside <code>habserdasher.twirp.go</code> you should find the following interface along with code to 
+<p>Inside <code>haberdasher.twirp.go</code> you should find the following interface along with code to 
 instantiate clients and servers.</p>
 <h2 id='implement-the-server'>Implement the Server</h2>
 <blockquote>
@@ -409,9 +409,9 @@ instantiate clients and servers.</p>
 Here we implement the function <code>MakeHat</code> that takes in <code>size *pb.Size</code> and outputs a new <code>&amp;pb.Hat{}</code>.</p>
 
 <p>Twirp servers can handle both
-<a href="https://git-aws.internal.justin.tv/common/twirp/wiki/Protobuf-and-JSON">JSON and Protobuf</a>
+<a href="https://github.com/twitchtv/twirp/wiki/Protobuf-and-JSON">JSON and Protobuf</a>
 requests, distinguishing them by their Content-Type header. Twirp servers can also be configured with
-<a href="https://git-aws.internal.justin.tv/common/twirp/wiki/Server-Hooks">Server Hooks</a>.</p>
+<a href="https://github.com/twitchtv/twirp/wiki/Server-Hooks">Server Hooks</a>.</p>
 
 <div class="clear"></div>
 
@@ -490,9 +490,9 @@ and then use it like this:</p>
 <blockquote>
 <p>If you are using <a href="https://github.com/twitchtv/retool">retool</a>, update using the following command:</p>
 </blockquote>
-<pre class="highlight shell"><code><span class="gp">$ </span>retool upgrade code.justin.tv/common/twirp/protoc-gen-twirp v4.4.0
+<pre class="highlight shell"><code><span class="gp">$ </span>retool upgrade github.com/twitchtv/twirp/protoc-gen-twirp v5.0.0
 </code></pre>
-<p>Twirp releases are tagged with semantic versioning and releases are managed by Github. See the <a href="https://git-aws.internal.justin.tv/common/twirp/releases">releases</a> page.</p>
+<p>Twirp releases are tagged with semantic versioning and releases are managed by Github. See the <a href="https://github.com/twitchtv/twirp/releases">releases</a> page.</p>
 
 <p>To stay up to date, you update protoc-gen-twirp and regenerate your code. It&#39;s simple with <a href="https://github.com/twitchtv/retool">retool</a>.</p>
 
@@ -501,8 +501,8 @@ and then use it like this:</p>
 <blockquote>
 <p>Use <code>go install</code> to update twirp if you don&#39;t have retool:</p>
 </blockquote>
-<pre class="highlight go"><code><span class="err">$</span><span class="x"> </span><span class="n">cd</span><span class="x"> </span><span class="err">$</span><span class="n">GOPATH</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">.</span><span class="n">justin</span><span class="o">.</span><span class="n">tv</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">twirp</span><span class="x">
-</span><span class="err">$</span><span class="x"> </span><span class="n">git</span><span class="x"> </span><span class="n">checkout</span><span class="x"> </span><span class="n">v4</span><span class="m">.4.0</span><span class="x">
+<pre class="highlight go"><code><span class="err">$</span><span class="x"> </span><span class="n">cd</span><span class="x"> </span><span class="err">$</span><span class="n">GOPATH</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">twitchtv</span><span class="o">/</span><span class="n">twirp</span><span class="x">
+</span><span class="err">$</span><span class="x"> </span><span class="n">git</span><span class="x"> </span><span class="n">checkout</span><span class="x"> </span><span class="n">v5</span><span class="m">.0.0</span><span class="x">
 </span><span class="err">$</span><span class="x"> </span><span class="k">go</span><span class="x"> </span><span class="n">install</span><span class="x"> </span><span class="o">./</span><span class="n">protoc</span><span class="o">-</span><span class="n">gen</span><span class="o">-</span><span class="n">twirp</span><span class="x">
 </span></code></pre>
 <p>If you&#39;re not using retool, <a href="https://github.com/twitchtv/retool">you should be using retool</a>! But you can also do a system-wide install with checking out the package new version and using go install:</p>
